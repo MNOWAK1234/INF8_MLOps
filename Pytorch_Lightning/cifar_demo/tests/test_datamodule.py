@@ -1,5 +1,5 @@
 import torch
-from data.datamodules.cifar_datamodule import CIFAR10DataModule
+from cifar_demo.data.datamodules.cifar_datamodule import CIFAR10DataModule
 
 # Initialize the DataModule
 root_dir = "data/cifar10"

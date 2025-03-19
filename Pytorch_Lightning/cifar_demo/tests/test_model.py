@@ -1,5 +1,5 @@
 import torch
-from models.model import CIFAR10Model
+from cifar_demo.models.model import CIFAR10Model
 
 # Create the model
 model = CIFAR10Model()

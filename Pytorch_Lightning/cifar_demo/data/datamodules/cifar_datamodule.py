@@ -1,8 +1,8 @@
 import pytorch_lightning as pl
-from data.dataloaders.cifar_dataloader import CIFAR10DataLoader
+from cifar_demo.data.dataloaders.cifar_dataloader import CIFAR10DataLoader
 
 class CIFAR10DataModule(pl.LightningDataModule):
-    def __init__(self, root_dir="data/cifar10", batch_size=32, num_workers=0, transform=None):
+    def __init__(self, root_dir="cifar_demo/data/cifar10", batch_size=32, num_workers=0, transform=None):
         super().__init__()
         self.root_dir = root_dir
         self.batch_size = batch_size

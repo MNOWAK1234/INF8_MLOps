@@ -1,4 +1,4 @@
-from data.datasets.cifar_dataset import CIFAR10Dataset
+from cifar_demo.data.datasets.cifar_dataset import CIFAR10Dataset
 from PIL import Image
 
 # Class labels for CIFAR-10

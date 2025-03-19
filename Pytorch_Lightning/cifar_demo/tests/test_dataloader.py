@@ -1,4 +1,4 @@
-from data.dataloaders.cifar_dataloader import CIFAR10DataLoader
+from cifar_demo.data.dataloaders.cifar_dataloader import CIFAR10DataLoader
 
 # Initialize the DataLoader
 dataloader = CIFAR10DataLoader(root_dir="data/cifar10/train", batch_size=64)

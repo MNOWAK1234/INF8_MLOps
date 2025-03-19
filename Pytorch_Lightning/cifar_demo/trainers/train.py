@@ -4,8 +4,9 @@ import pytorch_lightning as pl
 from pytorch_lightning import Trainer
 from pytorch_lightning.callbacks import ModelCheckpoint
 from pytorch_lightning.loggers.wandb import WandbLogger
-from data.datamodules.cifar_datamodule import CIFAR10DataModule
-from models.model import CIFAR10Model
+
+from cifar_demo.data.datamodules.cifar_datamodule import CIFAR10DataModule
+from cifar_demo.models.model import CIFAR10Model
 
 def train_model(batch_size=32, epochs=10, log_steps=10, learning_rate=1e-3):
     """

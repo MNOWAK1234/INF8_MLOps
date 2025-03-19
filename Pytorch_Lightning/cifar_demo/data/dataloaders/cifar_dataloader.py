@@ -1,7 +1,7 @@
 import torch
 from torch.utils.data import DataLoader
 from torchvision import transforms
-from data.datasets.cifar_dataset import CIFAR10Dataset  # Import your dataset class
+from cifar_demo.data.datasets.cifar_dataset import CIFAR10Dataset  # Import your dataset class
 
 class CIFAR10DataLoader:
     def __init__(self, root_dir, batch_size=32, transform=None, num_workers=0):
