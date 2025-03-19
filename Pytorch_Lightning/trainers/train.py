@@ -2,6 +2,7 @@ import torch
 import pytorch_lightning as pl
 from pytorch_lightning import Trainer
 from pytorch_lightning.callbacks import ModelCheckpoint
+from pytorch_lightning.loggers.wandb import WandbLogger
 from data.datamodules.cifar_datamodule import CIFAR10DataModule
 from models.model import CIFAR10Model
 
@@ -18,13 +19,17 @@ def train_model(batch_size=32, epochs=10, log_steps=10):
         mode="min"
     )
 
+    # Wandb Logger setup
+    wandb_logger = WandbLogger(project="MLOps_lab1", log_model=True)
+
     # Instantiate the Trainer
     trainer = Trainer(
         max_epochs=epochs,
         devices=1,  # Set to 1 for CPU or GPU
         accelerator="gpu" if torch.cuda.is_available() else "cpu",  # Automatically use GPU or CPU
         log_every_n_steps=log_steps,
-        callbacks=[checkpoint_callback]
+        callbacks=[checkpoint_callback],
+        logger=wandb_logger
     )
 
     # Train the model
