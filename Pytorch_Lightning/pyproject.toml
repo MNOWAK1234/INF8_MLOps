@@ -1,0 +1,16 @@
+[project]
+name = "cifar_demo"
+version = "0.0.1"
+description = ""
+authors = []
+readme = "README.md"
+
+dependencies = [
+    "torch",
+    "torchvision",
+    "pytorch-lightning",
+    "optuna",
+    "wandb",
+    "scikit-learn",
+    "typer",
+]

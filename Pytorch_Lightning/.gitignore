@@ -1,0 +1,17 @@
+# Python build
+__pycache__/
+build/
+*.egg-info/
+
+# Environments
+.env
+.venv
+
+# Logs
+lightning_logs/
+
+# Downloaded dataset
+cifar10/
+
+# VSCode settings
+.vscode/
