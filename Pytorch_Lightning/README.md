@@ -44,3 +44,9 @@ Train the model on the dataset:
 python3 -m cifar_demo train
 ```
 
+Optimize hyperparameters:
+
+```bash
+python3 -m cifar_demo optimize
+```
+

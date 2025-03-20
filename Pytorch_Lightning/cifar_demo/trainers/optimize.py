@@ -1,6 +1,6 @@
 # trainers/optimize.py
 import optuna
-from trainers.train import train_model  # Import the train_model function
+from cifar_demo.trainers.train import train_model  # Import the train_model function
 
 def objective(trial):
     """
