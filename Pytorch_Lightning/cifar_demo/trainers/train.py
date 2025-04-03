@@ -1,4 +1,3 @@
-# trainers/train.py
 import torch
 import pytorch_lightning as pl
 from pytorch_lightning import Trainer
@@ -8,10 +7,25 @@ from pytorch_lightning.loggers.wandb import WandbLogger
 from cifar_demo.data.datamodules.cifar_datamodule import CIFAR10DataModule
 from cifar_demo.models.model import CIFAR10Model
 
-def train_model(batch_size=32, epochs=10, log_steps=10, learning_rate=1e-3):
+def train_model(batch_size=32, epochs=10, log_steps=10, learning_rate=1e-3, save_dir: str = None):
     """
     Function to train the model with given hyperparameters.
+
+    Parameters:
+        save_dir (str): If provided, saves the model in the specified directory.
+                        If None, defaults to WandB's generated run ID.
     """
+
+    # Prepare the DataModule and Model
+    datamodule = CIFAR10DataModule(batch_size=batch_size)
+    model = CIFAR10Model()
+
+    # Initialize WandB Logger
+    wandb_logger = WandbLogger(project="runs", log_model=True)
+
+    # If user provided a save directory, use it; otherwise, use the WandB run ID
+    if save_dir is None:
+        save_dir = f"checkpoints/{wandb_logger.experiment.id}"
 
     # Prepare the DataModule and Model
     datamodule = CIFAR10DataModule(batch_size=batch_size)
@@ -19,14 +33,12 @@ def train_model(batch_size=32, epochs=10, log_steps=10, learning_rate=1e-3):
 
     # Checkpoint callback to save the best model
     checkpoint_callback = ModelCheckpoint(
-        monitor="val_loss", 
-        filename="best_model", 
-        save_top_k=1, 
+        dirpath=save_dir,  # Use the dynamically assigned directory
+        monitor="val_loss",
+        filename="best_model",
+        save_top_k=1,
         mode="min"
     )
-
-    # Wandb Logger setup
-    wandb_logger = WandbLogger(project="MLOps_lab1", log_model=True)
 
     # Initialize the Trainer
     trainer = Trainer(
@@ -52,8 +64,5 @@ def train_model(batch_size=32, epochs=10, log_steps=10, learning_rate=1e-3):
 
     # Test the model after validation
     trainer.test(model, datamodule=datamodule)
-
-    # # Return test loss for hyperparameter optimization
-    # loss = trainer.callback_metrics["test_loss"].item()
 
     return loss

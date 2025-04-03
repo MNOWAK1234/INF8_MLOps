@@ -15,3 +15,14 @@ cifar10/
 
 # VSCode settings
 .vscode/
+
+# WandB logs and runs
+wandb/
+.wandb/
+wandb-debug.log
+wandb/latest-run/
+
+# Ignore exported models
+*.ckpt
+*.onnx
+*.pth
