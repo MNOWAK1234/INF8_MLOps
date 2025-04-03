@@ -40,7 +40,7 @@ def export_to_pytorch(checkpoint_path: str = typer.Option("my_experiment/best_mo
 
 
 @app.command()
-def import_to_bentoml(checkpoint_path: str = typer.Option("my_experiment/best_model.ckpt", help="Path to model checkpoint (probably [name]/best_model.ckpt)"),
+def import_to_bentoml(checkpoint_path: str = typer.Option("checkpoints/best_model.ckpt", help="Path to model checkpoint (probably [name]/best_model.ckpt)"),
                        model_name: str = typer.Option("cifar10_model", help="Name for the BentoML model")):
     """
     Import the trained PyTorch model into BentoML.
@@ -52,8 +52,7 @@ def serve():
     """
     Host the BentoML model as a service.
     """
-    #test()
-    subprocess.run(["bentoml", "serve", "cifar_demo.service:CIFAR10Classifier"], check=True)
+    subprocess.run(["bentoml", "serve", "cifar_demo.bento.service:CIFAR10Classifier"], check=True)
 
 if __name__ == "__main__":
     app()

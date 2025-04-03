@@ -47,7 +47,7 @@ python3 -m cifar_demo train
 Train the model on the dataset and save it to the specified directory
 
 ```bash
-python3 -m cifar_demo train --save-dir "my_experiment"
+python3 -m cifar_demo train --save-dir "checkpoints"
 ```
 
 Optimize hyperparameters:
